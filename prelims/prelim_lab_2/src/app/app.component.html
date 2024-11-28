@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-between m-5">
+    <div class="personal">
+        <app-personal-info />
+    </div>    
+    <div>
+        <app-education />
+        <app-work-experience />
+        <app-training />
+    </div>
+    <div class="personal">
+        <app-reference />
+    </div>
+</div>
+<router-outlet />
+
+<style>
+    .personal {
+        background-color: rgb(221, 236, 255);
+        padding: 3%;
+        border-radius: 3%;
+    }
+</style>

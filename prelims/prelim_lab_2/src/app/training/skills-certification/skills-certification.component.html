@@ -1,0 +1,27 @@
+<h4>Badges and Certificates</h4>
+<div class="training-content">
+    <div class="badges">
+        <img [src]="info.badgeimages[0]" alt="" class="ITF">
+        <p>{{info.badge[0]}}</p>
+    </div>
+    <div class="badges">
+        <img [src]="info.badgeimages[1]" alt="">
+        <p>{{info.badge[1]}}</p>
+    </div>
+    <div class="badges">
+        <p>{{info.badge[2]}}</p>
+    </div>
+    <div class="badges">
+        <p>{{info.badge[3]}}</p>
+    </div>
+</div>
+<style>
+    img {
+        width: 100px;
+    }
+    .badges {
+        display: flex;
+        align-items: center;
+        margin: 3% 0;
+    }
+</style>
