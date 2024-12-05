@@ -1,0 +1,15 @@
+<div class="container w-full mx-auto h-screen flex flex-col items-center justify-center">
+    <h4 class="text-3xl italic font-bold text-center mb-10">{{info.content}}</h4>
+    <div class="flex flex-wrap justify-center gap-10">
+      <div *ngFor="let img of row1images; let index = index" class="flex-shrink-0">
+        <img [src]="img" alt="silly cats" class="rounded-lg w-full max-w-xs object-cover">    
+      </div>
+    </div>
+  
+    <div class="flex flex-wrap justify-center gap-10 mt-4">
+      <div *ngFor="let img of row2images; let index = index" class="flex-shrink-0">
+        <img [src]="img" alt="silly cats" class="rounded-lg w-full max-w-xs object-cover">
+      </div>
+    </div>
+  </div>
+  

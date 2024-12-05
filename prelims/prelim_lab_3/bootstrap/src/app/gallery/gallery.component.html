@@ -1,0 +1,14 @@
+<div class="container m-5 d-flex align-items-center my-0 mx-auto flex-column">
+  <h3 class="text-center pb-3">{{info.content}}</h3>
+    <div class="row">
+      <div *ngFor="let img of row1images; let index = index" class="col mx-2">
+        <img [src]="img" alt="silly cats" class="img-fluid rounded">
+      </div>
+    </div>
+  
+    <div class="row mt-2">
+      <div *ngFor="let img of row2images; let index = index" class="col mx-2">
+        <img [src]="img" alt="silly cats" class="img-fluid rounded">
+      </div>
+    </div>
+  </div>
