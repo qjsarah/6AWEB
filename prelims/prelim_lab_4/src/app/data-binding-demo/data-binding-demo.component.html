@@ -1,0 +1,10 @@
+<h1> {{title}} </h1>
+<h3>{{ description }}</h3>
+<img [src]="imgUrl" [width]="w" [height]="h" [alt]="altText">
+<p [style.color]="textColor">Blue Text</p>
+<p [class.highlighted]="isHighlighted">Highlighted Text</p>
+<input [(ngModel)]="yourName" placeholder="Enter your name">
+<p>Hello, {{yourName}}</p>
+<button (click)="increment()">Up</button>
+<button (click)="decrement()">Down</button>
+<span class="m-3">Count: {{count}}</span>
