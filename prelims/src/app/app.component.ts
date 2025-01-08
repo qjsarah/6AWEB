@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Comp1Component } from './comp1/comp1.component';
-import { Comp2Component } from './comp2/comp2.component';
-import { Comp3Component } from './comp3/comp3.component';
-import { Comp4Component } from './comp4/comp4.component';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { PartnersComponent } from './components/partners/partners.component';
+import { JoinComponent } from './components/join/join.component';
+import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Comp1Component, Comp2Component, Comp3Component, Comp4Component],
+  imports: [RouterOutlet, HomeComponent, AboutComponent, PartnersComponent, JoinComponent, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'prelim_lab_1';
+  content = 'conference-app';
 }
