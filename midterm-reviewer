@@ -1,0 +1,44 @@
+REACTIVE PROGRAMMING 
+Key Concepts
+Data Streams:
+
+Static Data Streams: Fixed data collections like arrays that don't change over time.
+
+Dynamic Data Streams: Data that changes over time, such as user interactions or server responses.
+
+Observables:
+
+In reactive programming, Observables are data sources that emit data over time.
+
+They can emit single or multiple values, including errors and completion signals.
+
+Observers:
+
+An Observer subscribes to an Observable to receive emitted data.
+
+It defines three callbacks: next() (handles incoming data), error() (handles errors), and complete() (called when the stream ends).
+
+Subscription:
+
+The process of an Observer subscribing to an Observable.
+
+Example:
+    const observable = new Observable(subscriber => {
+    subscriber.next(1);
+    subscriber.next(2);
+    subscriber.complete();
+  });
+  
+  observable.subscribe({
+    next(x) { console.log('Value:', x); },
+    error(err) { console.log('Error:', err); },
+    complete() { console.log('Completed'); }
+  });
+
+  
+Practical Applications
+Data Transfer Between Components: Using RxJs Observables to pass data between Angular components.
+
+HTTP Client: Fetching data from APIs and handling server responses.
+
+Reactive Forms: Building forms that react to user input dynamically.
