@@ -1,0 +1,57 @@
+<div class="container mt-5">
+    <h4>Reactive Form with Validation</h4>
+    <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input class='form-control' type="text" name="name" formControlName="name" placeholder="Your Name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" name="email" placeholder="Your email"  formControlName="email">
+            <div *ngIf="formdata.controls['email'].invalid && formdata.controls['email'].touched" class="error text-danger">
+                Email is required and must be a valid email address.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Contact Number (Optional)</label>
+            <input type="tel" class="form-control" name="phone"  placeholder="Your phone number" formControlName="phone">
+            <div *ngIf="formdata.controls['email'].invalid && formdata.controls['email'].touched" class="erro text-danger">
+                Phone number must be valid.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="message">Project Overview or Message</label>
+            <textarea class="form-control" name="message" rows="3"    placeholder="Leave a message here!"  formControlName="message"></textarea>
+        </div>
+        <input class='btn btn-outline-dark form-control' type="submit" value="Submit">
+    </form>
+
+    <div class="table-responsive mt-5" *ngIf="formdata.controls['email'].valid">
+        <table class="table table-light table-striped table-bordered text-center">
+            <thead class="thead-light">
+                <tr>
+                    <th>Label</th>
+                    <th>Your Entered Information</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td>{{ inputs[1].name }}</td>
+                </tr>
+                <tr >
+                    <td>Email</td>
+                    <td>{{ inputs[1].email }}</td>
+                </tr>
+                <tr >
+                    <td>Phone Number</td>
+                    <td>{{ inputs[1].phone }}</td>
+                </tr>
+                <tr>
+                    <td>Message</td>
+                    <td>{{ inputs[1].message }}</td>
+                </tr>      
+            </tbody>
+        </table>
+    </div>
+</div>

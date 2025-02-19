@@ -1,0 +1,8 @@
+.navbar-nav {
+    margin-left: auto;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 40%;
+}

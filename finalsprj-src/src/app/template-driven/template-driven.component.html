@@ -1,0 +1,52 @@
+<div class="container mt-5">
+    <h4>Template Driven Form</h4>
+    <form (ngSubmit)="onSubmit()" *ngFor="let input of inputs">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input class='form-control' type="text" name="name" [(ngModel)]="input.name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" name="email" name="email" required placeholder="Your email" [(ngModel)]="input.email">
+        </div>
+        <div class="form-group">
+            <label for="phone">Contact Number (Optional)</label>
+            <input type="tel" class="form-control" name="phone"  placeholder="Your phone number" [(ngModel)]="input.phone">
+        </div>
+        <div class="form-group">
+            <label for="message">Project Overview or Message</label>
+            <textarea class="form-control" name="message" rows="3" required placeholder="Leave a message here!" [(ngModel)]="input.message"></textarea>
+        </div>
+        <input class='btn btn-outline-dark form-control' type="submit" value="Submit" [disabled]="!input.email">  
+    </form>
+    <div *ngIf="submitted">
+        <div class="table-responsive mt-5">
+            <table class="table table-light table-striped table-bordered text-center">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Label</th>
+                        <th>Your Entered Information</th>
+                    </tr>
+                </thead>
+                <tbody  *ngFor="let input of inputs" >
+                    <tr>
+                        <td>Name</td>
+                        <td>{{ input.name }}</td>
+                    </tr>
+                    <tr >
+                        <td>Email</td>
+                        <td>{{ input.email }}</td>
+                    </tr>
+                    <tr >
+                        <td>Phone Number</td>
+                        <td>{{ input.phone }}</td>
+                    </tr>
+                    <tr>
+                        <td>Message</td>
+                        <td>{{ input.message }}</td>
+                    </tr>      
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

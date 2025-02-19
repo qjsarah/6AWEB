@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="/">Contact Me</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/template">Template Driven</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/reactive">Reactive</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/validation">Reactive with Validation</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h1 class="text-center mt-2">June's Contact Forms</h1>
+    <div class="d-flex justify-content-center">
+        <a routerLink="template"> <button class=" btn btn-outline-dark mx-2">Temaplate Driven Form </button> </a>
+        <a routerLink="reactive"> <button class=" btn btn-outline-dark mx-2">Reactive Form </button></a>
+        <a routerLink="validation"> <button class=" btn btn-outline-dark mx-2"> Reactive with Validation </button></a>
+    </div>
+</div>
+<router-outlet />
+<footer>
+    <p class="text-center">Created by June Sarah Quiambao</p>
+</footer>
