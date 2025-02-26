@@ -32,26 +32,28 @@
                 Password is required and must be at least 8 characters long.
             </mat-error>
         </mat-form-field>
-        
-        <mat-form-field appearance="outline">
-            <mat-label>Arrival Date</mat-label>
-            <input matInput [matDatepicker]="arrivalPicker" placeholder="Select a date" formControlName="arrivalDate">
-            <mat-datepicker-toggle matSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
-            <mat-datepicker #arrivalPicker></mat-datepicker>
-            <mat-error *ngIf="formdata.get('arrivalDate')?.hasError('required')">
-                Arrival Date is required.
-            </mat-error>
-        </mat-form-field>
 
-        <mat-form-field appearance="outline">
-            <mat-label>Departure Date</mat-label>
-            <input matInput [matDatepicker]="departPicker" placeholder="Select a date" formControlName="departDate">
-            <mat-datepicker-toggle matSuffix [for]="departPicker"></mat-datepicker-toggle>
-            <mat-datepicker #departPicker></mat-datepicker>
-            <mat-error *ngIf="formdata.get('departDate')?.hasError('required')">
-                Departure Date is required.
-            </mat-error>
-        </mat-form-field>
+        <div class="d-flex justify-content-between">
+          <mat-form-field appearance="outline"  class="dates">
+              <mat-label>Arrival Date</mat-label>
+              <input matInput [matDatepicker]="arrivalPicker" placeholder="Select a date" formControlName="arrivalDate">
+              <mat-datepicker-toggle matSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
+              <mat-datepicker #arrivalPicker></mat-datepicker>
+              <mat-error *ngIf="formdata.get('arrivalDate')?.hasError('required')">
+                  Arrival Date is required.
+              </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="dates">
+              <mat-label>Departure Date</mat-label>
+              <input matInput [matDatepicker]="departPicker" placeholder="Select a date" formControlName="departDate">
+              <mat-datepicker-toggle matSuffix [for]="departPicker"></mat-datepicker-toggle>
+              <mat-datepicker #departPicker></mat-datepicker>
+              <mat-error *ngIf="formdata.get('departDate')?.hasError('required')">
+                  Departure Date is required.
+              </mat-error>
+          </mat-form-field>
+        </div>
 
         <mat-button-toggle-group name="listingType" class="justify-center" formControlName="listingType">
             <mat-button-toggle value="Private Room">Private Room</mat-button-toggle>

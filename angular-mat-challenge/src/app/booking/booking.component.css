@@ -111,3 +111,6 @@
 .custom-table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(244, 163, 179, 0.3); /* Soft Rose Tint */
 }
+.dates {
+  margin: 2%;
+}
