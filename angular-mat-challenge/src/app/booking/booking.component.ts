@@ -32,13 +32,14 @@ export class BookingComponent {
   minPrice=10;
   maxPrice=1000;
   submitted=false;
+  maxBirthDate = new Date(2006, 11, 31);
   
 
   formdata: FormGroup = new FormGroup({
     name: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    birthDate: new FormControl(null, [Validators.required]),
+    birthDate: new FormControl(null, [Validators.required, Validators.max(new Date(2006, 11, 31).getTime())]),
     arrivalDate: new FormControl(null, [Validators.required]),
     departDate: new FormControl(null, [Validators.required]),
     minPrice: new FormControl(10),
@@ -70,9 +71,9 @@ export class BookingComponent {
     this.guest = data.guest;
     this.birthDate = data.birthDate;
     if (this.formdata.valid) {
-      console.log('Form Submitted!', this.formdata.value);
+      alert('Form Submitted!');
     } else {
-      prompt('Form is not valid!');
+      alert('Form is not valid!');
     }
   }
   hidelistingTypeIndicator = signal(false);

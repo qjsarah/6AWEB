@@ -1,0 +1,19 @@
+body.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.dark-theme {
+  background-color: black !important;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg') !important;
+  background-size: cover !important;
+  color: white !important;
+}
+
+
+.toggle-mode {
+  width: 100%;
+  margin: 2% auto;
+  border: none;
+  background-color: white;
+}

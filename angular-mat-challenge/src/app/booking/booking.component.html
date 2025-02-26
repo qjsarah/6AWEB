@@ -1,48 +1,58 @@
 <h1>Booking Form</h1>
+<p>Created by June Sarah Quiambao</p>
 <div class="form-container">
     <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
         <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
             <input matInput placeholder="Enter your Name" formControlName="name">
         </mat-form-field>
+
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
             <input matInput placeholder="Enter Email" formControlName="email" type="email">
-            <mat-error *ngIf="formdata.controls['email'].invalid && formdata.controls['email'].touched">
+            <mat-error *ngIf="formdata.get('email')?.invalid && formdata.get('email')?.touched">
                 Email is required and must be a valid email.
             </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Birth Date</mat-label>
-            <input matInput [matDatepicker]="picker" placeholder="Select a date" formControlName="birthDate">
+            <input matInput [matDatepicker]="picker" placeholder="Select a date" formControlName="birthDate" [max]="maxBirthDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="formdata.get('birthDate')?.hasError('required')">Birth date is required.</mat-error>
+            <mat-error *ngIf="formdata.get('birthDate')?.hasError('max')">
+                Birth date is required and must be in 2006 or earlier.
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
             <input matInput placeholder="Enter password" formControlName="password" type="password">
-            <mat-error *ngIf="formdata.controls['password'].invalid && formdata.controls['password'].touched">
+            <mat-error *ngIf="formdata.get('password')?.invalid && formdata.get('password')?.touched">
                 Password is required and must be at least 8 characters long.
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Arrival Date</mat-label>
+            <input matInput [matDatepicker]="arrivalPicker" placeholder="Select a date" formControlName="arrivalDate">
+            <mat-datepicker-toggle matSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
+            <mat-datepicker #arrivalPicker></mat-datepicker>
+            <mat-error *ngIf="formdata.get('arrivalDate')?.hasError('required')">
+                Arrival Date is required.
             </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-            <mat-label>Arrival Date</mat-label>
-            <input matInput [matDatepicker]="picker" placeholder="Select a date" formControlName="arrivalDate">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="formdata.get('arrivalDate')?.hasError('required')">Arrival Date is required.</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
             <mat-label>Departure Date</mat-label>
-            <input matInput [matDatepicker]="picker" placeholder="Select a date" formControlName="departDate">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="formdata.get('departDate')?.hasError('required')">Departure Date is required.</mat-error>
+            <input matInput [matDatepicker]="departPicker" placeholder="Select a date" formControlName="departDate">
+            <mat-datepicker-toggle matSuffix [for]="departPicker"></mat-datepicker-toggle>
+            <mat-datepicker #departPicker></mat-datepicker>
+            <mat-error *ngIf="formdata.get('departDate')?.hasError('required')">
+                Departure Date is required.
+            </mat-error>
         </mat-form-field>
+
         <mat-button-toggle-group name="listingType" class="justify-center" formControlName="listingType">
             <mat-button-toggle value="Private Room">Private Room</mat-button-toggle>
             <mat-button-toggle value="Shared Room">Shared Room</mat-button-toggle>
@@ -60,6 +70,7 @@
             <p>Instant Book Only</p>
             <mat-slide-toggle></mat-slide-toggle>
         </div>
+
         <div class="slider-group">
             <p>Price Range in $(USD) </p>
             <mat-slider [min]="minPrice" [max]="maxPrice" [step]="10" [discrete]="true">
@@ -67,18 +78,50 @@
                 <input matSliderEndThumb formControlName="maxPrice">
             </mat-slider>
         </div>
+
         <button mat-raised-button color="primary" type="submit">Submit</button>
     </form>
-    <p *ngIf="submitted && formdata.valid">
-        You have entered: <br>
-        Name: {{name}} <br>
-        Email: {{ email }} <br>
-        Birth Date: {{birthDate}} <br>
-        Password: {{password}} <br>
-        Arrival Date: {{ arrivalDate}} <br>
-        Departure Date: {{ departDate }} <br>
-        Listing Type: {{ listingType }} <br>
-        Guest Count: {{guest}} <br>
-        Price Range: {{minPrice}} - {{ maxPrice}}
-    </p>
+    <div  *ngIf="submitted && formdata.valid" class="mt-5">
+        <h2 class="center">Your Inputs</h2>
+        <table *ngIf="submitted && formdata.valid" class="table table-bordered custom-table custom-table-striped mt-3">
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <td>{{ name }}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td>{{ email }}</td>
+              </tr>
+              <tr>
+                <th>Birth Date</th>
+                <td>{{ birthDate | date:'fullDate' }}</td>
+              </tr>
+              <tr>
+                <th>Password</th>
+                <td>{{ password }}</td>
+              </tr>
+              <tr>
+                <th>Arrival Date</th>
+                <td>{{ arrivalDate | date:'fullDate' }}</td>
+              </tr>
+              <tr>
+                <th>Departure Date</th>
+                <td>{{ departDate | date:'fullDate' }}</td>
+              </tr>
+              <tr>
+                <th>Listing Type</th>
+                <td>{{ listingType }}</td>
+              </tr>
+              <tr>
+                <th>Guest Count</th>
+                <td>{{ guest }}</td>
+              </tr>
+              <tr>
+                <th>Price Range</th>
+                <td>{{ minPrice }} - {{ maxPrice }}</td>
+              </tr>
+            </tbody>
+          </table>          
+        </div>
 </div>
