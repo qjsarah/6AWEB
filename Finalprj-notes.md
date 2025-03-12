@@ -31,9 +31,9 @@ Final Presentation:
   - image
   - content (time and location, body-text)
 
-forms:
+## forms:
 - volunteer form
 - contact form
 - post form
 
-admin login (optional)
+## admin login (optional)
