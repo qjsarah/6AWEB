@@ -58,7 +58,7 @@ export class AppComponent {
       }
     )
   }
-  
+
   selectPostForEdit(post: any) {
     this.editingPost = { ...post }; // Cloning to avoid direct changes before saving
   }

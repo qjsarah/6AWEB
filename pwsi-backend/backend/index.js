@@ -62,8 +62,9 @@ app.post("/posts/Addpost", upload.single("image"), async (req, res) => {
     await database.collection("posts").insertOne({
       id: (numOfDocs + 1).toString(),
       title: req.body.title,
-      image: imageUrl, // Save the actual image path
+      image: imageUrl, 
       content: req.body.content,
+      createdAt: new Date().toISOString()
     });
 
     res.json("Added Successfully");
