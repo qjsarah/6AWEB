@@ -1,0 +1,15 @@
+<form (submit)="addPost(); $event.preventDefault()">
+  <input type="text" id="newPost" placeholder="Title" required>
+  <input type="file" accept="image/*" id="newFeaturedImage" required>
+  <input type="text" id="newPostContent" placeholder="Content" required>
+  <button type="submit">Add Post</button>
+</form>
+
+<div *ngFor="let post of posts">
+  <h3>{{ post.title }}</h3>
+  <img *ngIf="post.image" [src]="post.image" alt="{{ post.title }}" width="100">
+  <p>{{ post.content }}</p>
+  <button (click)="deletePost(post.id)">Delete</button>
+</div>
+
+<router-outlet></router-outlet>
