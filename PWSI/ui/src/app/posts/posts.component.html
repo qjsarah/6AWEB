@@ -1,0 +1,14 @@
+<h4>ALL POSTS</h4>
+<a routerLink="/add-post">
+    <button type="button">Add New Post</button>
+</a>
+<div *ngFor="let post of posts">
+    <h3>{{ post.title }}</h3>
+    <p><strong>Posted on:</strong> {{ post.createdAt | date:'medium' }}</p>
+    <img *ngIf="post.image" [src]="post.image" alt="{{ post.title }}" width="100">
+    <p>{{ post.content }}</p>
+    <button (click)="deletePost(post._id)">Delete</button>
+    <a [routerLink]="['/edit-post', post._id]">
+        <button>Edit</button>
+    </a>
+</div>

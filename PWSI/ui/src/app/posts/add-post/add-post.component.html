@@ -1,0 +1,9 @@
+<h3>Add A New Post</h3>
+<form (submit)="addPost(); $event.preventDefault()">
+  <input type="text" id="newPost" placeholder="Title" required>
+  <input type="file" accept="image/*" id="newFeaturedImage" required>
+  <textarea name="content" id="newPostContent" placeholder="Content" required></textarea>
+  <button type="submit">Submit</button>
+  <button type="button" (click)="cancel()">Cancel</button>
+</form>
+<a routerLink="/posts"><button>View all Posts</button></a>

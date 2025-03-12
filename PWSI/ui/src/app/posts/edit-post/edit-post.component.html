@@ -1,0 +1,12 @@
+<h3>Edit Post</h3>
+
+<form *ngIf="editingPost" (submit)="editPost(fileInput); $event.preventDefault()">
+  <input type="text" [(ngModel)]="editingPost.title" placeholder="Title" required name="title">
+
+  <input type="file" accept="image/*" #fileInput>
+
+  <textarea [(ngModel)]="editingPost.content" placeholder="Content" required name="content"></textarea>
+
+  <button type="submit">Save Changes</button>
+  <button type="button" (click)="router.navigate(['/'])">Cancel</button>
+</form>
