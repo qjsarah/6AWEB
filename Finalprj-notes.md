@@ -37,3 +37,8 @@ Final Presentation:
 - post form
 
 ## admin login (optional)
+crud table:
+- volunteer (view)
+- email (view)
+- contact (view)
+- posts (crud)
