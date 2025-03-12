@@ -2,17 +2,19 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'ui';
   readonly APIUrl = 'http://localhost:5038/posts/';
+  editingPost: any=null;
 
   constructor(private http:HttpClient){
   }
@@ -55,5 +57,35 @@ export class AppComponent {
         this.refreshPosts()
       }
     )
+  }
+  
+  selectPostForEdit(post: any) {
+    this.editingPost = { ...post }; // Cloning to avoid direct changes before saving
+  }
+  async editPost() {
+    if (!this.editingPost) return;
+
+    const updatedTitle = (<HTMLInputElement>document.getElementById('editTitle')).value;
+    const updatedContent = (<HTMLInputElement>document.getElementById('editContent')).value;
+    const fileInput = <HTMLInputElement>document.getElementById('editFeaturedImage');
+    const formData = new FormData();
+    formData.append('id', this.editingPost.id);
+    formData.append('title', this.editingPost.title);
+    formData.append('content', this.editingPost.content);
+  
+    if (fileInput.files && fileInput.files.length > 0) {
+      formData.append('image', fileInput.files[0]); // Include new image if selected
+    }
+  
+    try {
+      const response = await this.http.put(this.APIUrl + 'Editpost', formData).toPromise();
+      alert(response);
+      this.refreshPosts();
+    } catch (error) {
+      console.error('Error updating post:', error);
+    }
+  }
+  cancelEdit() {
+    this.editingPost = null;
   }
 }

@@ -5,6 +5,8 @@ var Express = require("express");
 var Mongoclient = require("mongodb").MongoClient;
 var cors = require("cors");
 const multer = require("multer");
+const fs = require('fs');
+const path = require('path');
 
 // Create an instance of express app
 var app = Express();
@@ -74,9 +76,18 @@ app.post("/posts/Addpost", upload.single("image"), async (req, res) => {
 // Delete a post
 app.delete("/posts/Deletepost", async (req, res) => {
   try {
-    await database.collection("posts").deleteOne({
-      id: req.query.id,
-    });
+    // Find the existing post
+    const id = req.query.id;
+    const post = await database.collection("posts").findOne({ id });
+    if (!post) {
+        return res.status(404).json({ error: "Post not found" });
+    }
+    // Delete the old image if it exists
+    const oldImagePath = path.join(__dirname, "uploads", path.basename(post.image));
+    if (fs.existsSync(oldImagePath)) {
+        fs.unlinkSync(oldImagePath); // Delete the old file
+    }
+    await database.collection("posts").deleteOne({ id });
 
     res.json("Deleted successfully!");
   } catch (error) {
@@ -85,5 +96,43 @@ app.delete("/posts/Deletepost", async (req, res) => {
   }
 });
 
+// Edit a post (Handles File Uploads)
+app.put("/posts/Editpost", upload.single("image"), async (req, res) => {
+    try {
+      const { id, title, content } = req.body;
+  
+      // Find the existing post
+      const post = await database.collection("posts").findOne({ id });
+  
+      if (!post) {
+        return res.status(404).json({ error: "Post not found" });
+      }
+      let imageUrl = post.image; // Keep old image by default
+     
+      if (req.file) {
+        const newImagePath = `http://localhost:5038/uploads/${req.file.filename}`;
+  
+        // Delete the old image if it exists
+        const oldImagePath = path.join(__dirname, "uploads", path.basename(post.image));
+        if (fs.existsSync(oldImagePath)) {
+        fs.unlinkSync(oldImagePath); // Delete the old file
+        }
+  
+        imageUrl = newImagePath; // Set new image path
+      }
+
+      // Update the post in the dbase
+      await database.collection("posts").updateOne(
+        { id },
+        { $set: { title, content, image: imageUrl } }
+      );
+  
+      res.json("Updated successfully!");
+    } catch (error) {
+      console.error("Error updating post:", error);
+      res.status(500).json({ error: "Failed to update post" });
+    }
+  });
+  
 // Serve uploaded images statically
 app.use("/uploads", Express.static("uploads"));

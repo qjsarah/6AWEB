@@ -10,6 +10,15 @@
   <img *ngIf="post.image" [src]="post.image" alt="{{ post.title }}" width="100">
   <p>{{ post.content }}</p>
   <button (click)="deletePost(post.id)">Delete</button>
+  <button (click)="selectPostForEdit(post)">Edit</button>
 </div>
 
+<form *ngIf="editingPost" (submit)="editPost(); $event.preventDefault()">
+  <h3>Edit Post</h3>
+  <input type="text" id="editTitle" [(ngModel)]="editingPost.title" placeholder="Title" required name="title">
+  <input type="file" accept="image/*" id="editFeaturedImage" name="image">
+  <input type="text" id="editContent" [(ngModel)]="editingPost.content" placeholder="Content" required name="content">
+  <button type="submit">Save Changes</button>
+  <button type="button" (click)="cancelEdit()">Cancel</button>
+</form>
 <router-outlet></router-outlet>
