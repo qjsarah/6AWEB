@@ -7,7 +7,7 @@ Final Presentation:
 
 ## Collection
 - volunteer
-  - volunteer id PK
+  - volunteer id
   - name
   - contact number
   - email
