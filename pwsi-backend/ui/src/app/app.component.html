@@ -1,7 +1,7 @@
 <form (submit)="addPost(); $event.preventDefault()">
   <input type="text" id="newPost" placeholder="Title" required>
   <input type="file" accept="image/*" id="newFeaturedImage" required>
-  <input type="text" id="newPostContent" placeholder="Content" required>
+  <textarea name="content" id="newPostContent" placeholder="Content" required></textarea>
   <button type="submit">Add Post</button>
 </form>
 
@@ -18,7 +18,7 @@
   <h3>Edit Post</h3>
   <input type="text" id="editTitle" [(ngModel)]="editingPost.title" placeholder="Title" required name="title">
   <input type="file" accept="image/*" id="editFeaturedImage" name="image">
-  <input type="text" id="editContent" [(ngModel)]="editingPost.content" placeholder="Content" required name="content">
+  <textarea type="text" id="editContent" [(ngModel)]="editingPost.content" placeholder="Content" required name="content"></textarea>
   <button type="submit">Save Changes</button>
   <button type="button" (click)="cancelEdit()">Cancel</button>
 </form>
