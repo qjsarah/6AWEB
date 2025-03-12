@@ -38,7 +38,7 @@ Final Presentation:
 
 ## admin login (optional)
 crud table:
-- volunteer (view)
-- email (view)
-- contact (view)
+- volunteer (view cd)
+- subscriber (view cd)
+- contact (view cd)
 - posts (crud)
