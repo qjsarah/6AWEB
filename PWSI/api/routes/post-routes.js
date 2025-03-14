@@ -2,7 +2,6 @@ const multer = require("multer");
 const { ObjectId } = require("mongodb");
 const fs = require('fs');
 const path = require('path');
-const { authenticateToken } = require('../services/services')
 
 
 // Configure multer for file storage
@@ -25,7 +24,7 @@ database.collection("posts").find({}).toArray((error, result) => {
 });
   
 // Add a new post (Handles File Uploads)
-app.post("/posts/addPost", authenticateToken, upload.single("image"), async (req, res) => {
+app.post("/posts/addPost", upload.single("image"), async (req, res) => {
 try {
     const imageUrl = req.file
     ? `http://localhost:5038/uploads/${req.file.filename}`
@@ -46,7 +45,7 @@ try {
 });
 
 // Delete a post
-app.delete("/posts/Deletepost", authenticateToken, async (req, res) => {
+app.delete("/posts/Deletepost", async (req, res) => {
 try {
     const id = req.query.id;
     const post = await database.collection("posts").findOne({ id });
@@ -68,7 +67,7 @@ try {
 });
 
 // Get post with specific id
-app.get('/posts/GetPost/:id', authenticateToken, async (req, res) => {
+app.get('/posts/GetPost/:id', async (req, res) => {
 try {
     const postId = req.params.id;
 
@@ -91,7 +90,7 @@ try {
 
 
 // Edit a post (Handles File Uploads)
-app.put("/posts/Editpost/:id", authenticateToken, upload.single("image"), async (req, res) => {
+app.put("/posts/Editpost/:id", upload.single("image"), async (req, res) => {
 try {
     const postId = req.params.id;
     const { title, content } = req.body;

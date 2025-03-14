@@ -24,11 +24,7 @@ MongoClient.connect(CONNECTION_STRING, (error, client) => {
 });
 
 // Middleware
-app.use(cors({
-  origin: 'http://localhost:4200', // Allow frontend origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'access-token']
-}));
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));

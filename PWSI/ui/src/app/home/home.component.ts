@@ -1,22 +1,19 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-posts',
+  selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
-  templateUrl: './posts.component.html',
-  styleUrl: './posts.component.css'
+  imports: [CommonModule, RouterModule],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
-export class PostsComponent {
+export class HomeComponent {
   readonly APIUrl = 'http://localhost:5038/posts/';
-  editingPost: any=null;  
-
   constructor(private http:HttpClient){}
-
+  title = 'ui';
   posts: any=[];
 
   refreshPosts(){
@@ -26,12 +23,4 @@ export class PostsComponent {
     this.refreshPosts();
   }
 
-  deletePost(id:string){
-    this.http.delete(this.APIUrl+'DeletePost?_id='+id).subscribe(
-      data=>{
-        alert(data);
-        this.refreshPosts()
-      }
-    )
-  }
 }
