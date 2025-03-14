@@ -17,7 +17,7 @@ export class HomeComponent {
   posts: any=[];
 
   refreshPosts(){
-    this.http.get(this.APIUrl+'GetPosts').subscribe(data=>{this.posts=data;})
+    this.http.get(this.APIUrl+'getPosts').subscribe(data=>{this.posts=data;})
   }
   ngOnInit(){
     this.refreshPosts();

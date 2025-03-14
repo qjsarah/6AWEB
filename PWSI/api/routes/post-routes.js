@@ -67,7 +67,7 @@ try {
 });
 
 // Get post with specific id
-app.get('/posts/GetPost/:id', async (req, res) => {
+app.get('/posts/getPost/:id', async (req, res) => {
 try {
     const postId = req.params.id;
 

@@ -1,7 +1,6 @@
 <a routerLink='/login'>Login</a>
 <div *ngFor="let post of posts">
-    <h3>{{ post.title }}</h3>
-    <p><strong>Posted on:</strong> {{ post.createdAt | date:'medium' }}</p>
-    <img *ngIf="post.image" [src]="post.image" alt="{{ post.title }}" width="100">
-    <p>{{ post.content }}</p>
-</div>
+    <h3>
+      <a [routerLink]="['/posts', post._id]">{{ post.title }}</a>
+    </h3>
+</div>  
