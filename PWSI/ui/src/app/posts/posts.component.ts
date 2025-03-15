@@ -3,11 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { VolunteerTableComponent } from './volunteer-table/volunteer-table.component';
+import { ContactTableComponent } from './contact-table/contact-table.component';
 
 @Component({
   selector: 'app-posts',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, VolunteerTableComponent, ContactTableComponent],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css'
 })

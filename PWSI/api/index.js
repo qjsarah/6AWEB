@@ -32,9 +32,11 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Routes
 let postRoutes = require("./routes/post-routes");
-let login = require('./routes/login')
+let login = require('./routes/login');
+let volunteerRoutes = require('./routes/volunteer-routes');
+let contactRoutes = require('./routes/contact-routes');
 postRoutes(app);
-async function createAdminUser() {
+async function createAdminUser() { //precreated admin user
   try {
     const adminEmail = "admin@gmail.com";
     const adminPassword = "admin123";
@@ -63,7 +65,8 @@ async function createAdminUser() {
   }
 }
 login(app);
-
+volunteerRoutes(app);
+contactRoutes(app);
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
