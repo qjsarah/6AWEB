@@ -1,0 +1,9 @@
+<h2>{{ posts.title }}</h2>
+<p><strong>Posted on:</strong> {{ posts.createdAt | date:'medium' }}</p>
+<img [src]="posts.image" alt="">
+<p>{{ posts.content }}</p>
+<button (click)="deletePost(posts._id)">Delete</button>
+<a [routerLink]="['/edit-post', posts._id]">
+    <button>Edit</button>
+</a>
+<a routerLink="/posts">Back to Posts</a>

@@ -26,12 +26,12 @@ export class PostsComponent {
     this.refreshPosts();
   }
 
-  deletePost(id:string){
-    this.http.delete(this.APIUrl+'DeletePost?_id='+id).subscribe(
-      data=>{
-        alert(data);
-        this.refreshPosts()
-      }
-    )
-  }
+  // deletePost(id:string){
+  //   this.http.delete(this.APIUrl+'DeletePost?_id='+id).subscribe(
+  //     data=>{
+  //       alert(data);
+  //       this.refreshPosts()
+  //     }
+  //   )
+  // }
 }

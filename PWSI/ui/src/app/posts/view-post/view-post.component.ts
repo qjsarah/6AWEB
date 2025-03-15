@@ -19,7 +19,6 @@ export class ViewPostComponent {
 
   ngOnInit() {
     const postId = this.route.snapshot.paramMap.get('id');
-    console.log('Extracted postId:', postId); // Debugging log
   
     if (!postId) {
       console.error('postId is undefined! Check your routing.');
@@ -27,7 +26,6 @@ export class ViewPostComponent {
     }
     this.http.get(this.APIUrl + postId).subscribe(
       data => {
-        console.log('Post Data:', data);
         this.post = data;
       },
       error => console.error('Error fetching post:', error)
