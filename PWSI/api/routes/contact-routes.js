@@ -2,7 +2,7 @@ const { ObjectId } = require('mongodb');
 
 module.exports = function(app) {
     //Get the contacts
-app.get('/api/contacts/GetContacts', async (req, res) => {
+app.get('/contacts/GetContacts', async (req, res) => {
     try {
       let result = await database.collection("contacts").find({}).toArray();
       res.json(result);
@@ -12,7 +12,7 @@ app.get('/api/contacts/GetContacts', async (req, res) => {
   });
   
   //Add contacts
-  app.post("/api/contacts/AddContact", async (req, res) => {
+  app.post("/contacts/AddContact", async (req, res) => {
     try {
       console.log("Received Contact Data:", req.body);
       let newContact = req.body;
@@ -24,7 +24,7 @@ app.get('/api/contacts/GetContacts', async (req, res) => {
   });
   
   //Delete contacts
-  app.delete("/api/contacts/DeleteContacts", async (req, res) => {
+  app.delete("/contacts/DeleteContacts", async (req, res) => {
     try {
       let id = req.query.id;
       if (!id) return res.status(400).json({ error: "ID is Required" });

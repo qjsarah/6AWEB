@@ -20,5 +20,5 @@ export const routes: Routes = [
     { path: 'posts/:id', component: ViewPostComponent },
     { path: 'admin-posts/:id', component: AdminViewComponent },
     { path: 'volunteer', component: VolunteerComponent },
-
+    { path: 'contact-form', component: ContactComponent },
 ];
